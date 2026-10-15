@@ -1,0 +1,897 @@
+/* =====================================================
+   CODEX Landing Page
+   Approach: desktop-first. The base styles below are the
+   desktop design; media queries at the bottom adjust for
+   tablet (max-width: 992px) and mobile (max-width: 576px).
+
+   Table of contents
+   1. Variables
+   2. Reset and base
+   3. Reusable pieces (container, buttons, section headings)
+   4. Header and navigation
+   5. Hero
+   6. Services
+   7. Why Choose Us
+   8. Projects
+   9. Call to action
+   10. Footer
+   11. Tablet  (max-width: 992px)
+   12. Mobile  (max-width: 576px)
+   ===================================================== */
+
+
+/* ---------- 1. Variables ---------- */
+:root {
+  --color-dark: #050b18;
+  --color-hero: #071226;
+  --color-primary: #1a66ff;
+  --color-primary-soft: #eef3fd;
+  --color-section-alt: #f4f7fd;
+  --color-text: #0d1424;
+  --color-muted: #6b7385;
+  --color-white: #ffffff;
+
+  --container-width: 1200px;
+  --radius: 6px;
+  --shadow-card: 0 2px 10px rgba(16, 40, 90, 0.08);
+}
+
+
+/* ---------- 2. Reset and base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-white);
+  line-height: 1.5;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* ---------- 3. Reusable pieces ---------- */
+
+/* Centers content and limits its width. Used inside every section. */
+.container {
+  width: 100%;
+  max-width: calc(var(--container-width) + 40px); /* + 20px padding on each side */
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 45px;
+  padding: 0 32px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-outline {
+  border-color: var(--color-white);
+  color: var(--color-white);
+  background-color: transparent;
+}
+
+.btn-light {
+  background-color: var(--color-white);
+  color: var(--color-primary);
+}
+
+.btn-small {
+  min-height: 30px;
+  padding: 0 18px;
+  font-size: 13px;
+}
+
+/* Centered title + subtitle used by Services and Projects */
+.section-heading {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.section-heading h2 {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.section-heading p {
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+/* Logo: the X is blue. Used in the header and the footer. */
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--color-white);
+}
+
+.logo span {
+  color: var(--color-primary);
+}
+
+
+/* ---------- 4. Header and navigation ---------- */
+.site-header {
+  position: relative;
+  z-index: 10;
+  background-color: var(--color-dark);
+  color: var(--color-white);
+}
+
+/* Grid with 3 columns: logo | nav (centered) | button.
+   The outer columns are both 1fr, so the middle column stays centered. */
+.header-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  min-height: 56px;
+}
+
+.header-cta {
+  justify-self: end;
+}
+
+.main-nav ul {
+  display: flex;
+  gap: 32px;
+}
+
+.main-nav a {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.main-nav a:hover {
+  color: var(--color-primary);
+}
+
+/* The checkbox is invisible but still reachable by keyboard */
+.nav-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Hamburger icon is hidden on desktop and tablet */
+.hamburger {
+  display: none;
+}
+
+
+/* ---------- 5. Hero ---------- */
+/* Two background layers:
+   1) a dark gradient on the left so the text stays readable
+   2) the laptop photo, aligned to the right edge of the container */
+.hero {
+  display: flex;
+  align-items: center;
+  min-height: 324px;
+  background-color: var(--color-hero);
+  background-image:
+    linear-gradient(90deg, var(--color-dark) 0%, var(--color-dark) 30%, rgba(5, 11, 24, 0) 62%),
+    url("imgs/Laptop.jpeg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%, 760px auto;
+  background-position: 0 0, right max(20px, calc((100vw - var(--container-width)) / 2)) center;
+}
+
+.hero .container {
+  padding-block: 40px;
+}
+
+.hero-content {
+  max-width: 520px;
+}
+
+.hero h1 {
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1.12;
+  color: var(--color-white);
+}
+
+.accent {
+  color: var(--color-primary);
+}
+
+.hero p {
+  max-width: 340px;
+  margin: 16px 0 24px;
+  font-size: 18px;
+  line-height: 1.45;
+  color: var(--color-white);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+}
+
+
+/* ---------- 6. Services ---------- */
+.services {
+  padding: 28px 0 24px;
+  background-color: var(--color-white);
+}
+
+/* 3 equal columns */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 850px;
+  margin-inline: auto;
+}
+
+.service-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  background-color: var(--color-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+
+.service-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.service-text h3 {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.service-text p {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--color-muted);
+}
+
+/* The arrow only appears on mobile */
+.service-arrow {
+  display: none;
+}
+
+
+/* ---------- 7. Why Choose Us ---------- */
+.why-us {
+  padding: 22px 0;
+  background-color: var(--color-section-alt);
+}
+
+/* 2 columns: fixed-width image, text takes the rest */
+.why-us-inner {
+  display: grid;
+  grid-template-columns: 343px 1fr;
+  grid-template-areas: "image text";
+  gap: 70px;
+  align-items: center;
+  max-width: 870px; /* 830px of content + 40px padding */
+}
+
+.why-us-image {
+  grid-area: image;
+}
+
+.why-us-image img {
+  width: 100%;
+  aspect-ratio: 343 / 136;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.why-us-text {
+  grid-area: text;
+}
+
+.why-us-text h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.check-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 0;
+  font-size: 12.5px;
+  color: var(--color-text);
+}
+
+.check-list svg {
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+
+/* ---------- 8. Projects ---------- */
+.projects {
+  padding: 18px 0 16px;
+  background-color: var(--color-white);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  max-width: 830px;
+  margin-inline: auto;
+}
+
+.project-card {
+  overflow: hidden; /* keeps the image corners rounded */
+  background-color: var(--color-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+
+.project-card img {
+  width: 100%;
+  aspect-ratio: 3.3 / 1;
+  object-fit: cover;
+}
+
+/* Image + text overlay.
+   The wrapper is the positioning parent for the overlay, and container-type
+   lets the overlay text scale with the card width (cqw = 1% of that width). */
+.project-thumb {
+  position: relative;
+  container-type: inline-size;
+}
+
+.thumb-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;   /* fallback for older browsers */
+  font-size: 3.7cqw; /* every other size below is in em, relative to this one */
+  line-height: 1.2;
+  pointer-events: none;
+}
+
+/* Mini navigation bar across the top of the thumbnail */
+.thumb-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8em 1.6em;
+  font-size: 0.6em;
+}
+
+.thumb-logo {
+  font-size: 1.15em;
+  font-weight: 700;
+}
+
+.thumb-links {
+  display: flex;
+  gap: 1.4em;
+}
+
+/* Headline block */
+.thumb-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35em;
+  padding: 0.9em 0 0 0.9em;
+}
+
+.thumb-title {
+  font-size: 1.1em;
+  font-weight: 700;
+}
+
+.thumb-eyebrow {
+  font-size: 0.5em;
+}
+
+.thumb-btn {
+  padding: 0.6em 1.6em;
+  border-radius: 0.5em;
+  font-size: 0.5em;
+  font-weight: 600;
+}
+
+/* Project Two: light overlay, fades out toward the chair on the right */
+.thumb-overlay--light {
+  background: linear-gradient(90deg, rgba(244, 245, 247, 0.96) 0%, rgba(244, 245, 247, 0.9) 38%, rgba(244, 245, 247, 0) 64%);
+  color: #111827;
+}
+
+.thumb-overlay--light .thumb-nav {
+  background-color: rgba(255, 255, 255, 0.92);
+  color: #4b5563;
+}
+
+.thumb-overlay--light .thumb-logo {
+  color: #111827;
+}
+
+.thumb-overlay--light .thumb-eyebrow {
+  color: #6b7280;
+}
+
+.thumb-overlay--light .thumb-btn {
+  background-color: #111827;
+  color: var(--color-white);
+}
+
+/* Project Three: dark overlay with white text */
+.thumb-overlay--dark {
+  background: linear-gradient(90deg, rgba(5, 11, 24, 0.6) 0%, rgba(5, 11, 24, 0.25) 55%, rgba(5, 11, 24, 0) 80%);
+  color: var(--color-white);
+}
+
+.thumb-overlay--dark .thumb-nav {
+  background-color: rgba(5, 11, 24, 0.55);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.thumb-overlay--dark .thumb-copy {
+  padding: 1.4em 0 0 10%;
+}
+
+.thumb-overlay--dark .thumb-title {
+  font-weight: 500;
+}
+
+.project-info {
+  padding: 8px 12px 9px;
+}
+
+.project-info h3 {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.project-info p {
+  font-size: 11px;
+  color: var(--color-muted);
+}
+
+
+/* ---------- 9. Call to action ---------- */
+.cta {
+  padding: 10px 0;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.cta-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  max-width: 760px;
+}
+
+.cta-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.cta-text {
+  flex: 1; /* takes the free space, which pushes the button to the right */
+}
+
+.cta-text h2 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.cta-text p {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+
+/* ---------- 10. Footer ---------- */
+.site-footer {
+  padding: 14px 0;
+  background-color: var(--color-dark);
+  color: var(--color-white);
+}
+
+/* Same 3-column trick as the header, so the copyright stays centered */
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+
+.site-footer .logo {
+  font-size: 20px;
+}
+
+.copyright {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.social-links {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.social-links a {
+  display: flex;
+}
+
+.social-links a:hover {
+  color: var(--color-primary);
+}
+
+
+/* =====================================================
+   11. TABLET  (max-width: 992px)
+   ===================================================== */
+@media (max-width: 992px) {
+
+  .main-nav ul {
+    gap: 20px;
+  }
+
+  .hero {
+    background-size: 100% 100%, 600px auto;
+  }
+
+  .hero h1 {
+    font-size: 44px;
+  }
+
+  /* Cards become taller: icon on top, text underneath */
+  .service-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .why-us-inner {
+    grid-template-columns: 40% 1fr;
+    gap: 40px;
+  }
+
+  .projects-grid {
+    gap: 12px;
+  }
+
+  .cta-inner {
+    gap: 18px;
+  }
+}
+
+
+/* =====================================================
+   12. MOBILE  (max-width: 576px)
+   ===================================================== */
+@media (max-width: 576px) {
+
+  /* ----- Header: logo on the left, hamburger on the right ----- */
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    min-height: 52px;
+  }
+
+  .header-cta {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px 0;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 26px;
+    height: 3px;
+    border-radius: 2px;
+    background-color: var(--color-white);
+  }
+
+  /* Menu is a dropdown below the header, hidden until the checkbox is checked */
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 6px 20px 14px;
+    background-color: var(--color-dark);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .nav-toggle:checked ~ .header-inner .main-nav {
+    display: block;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .main-nav a {
+    display: block;
+    padding: 12px 0;
+  }
+
+  .nav-toggle:focus-visible ~ .header-inner .hamburger {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 4px;
+  }
+
+  /* ----- Hero: text on the left, laptop image on the right ----- */
+  .hero {
+    min-height: 0;
+    background-image:
+      linear-gradient(90deg, var(--color-dark) 0%, var(--color-dark) 45%, rgba(5, 11, 24, 0.2) 80%),
+      url("images/hero-laptop.jpg");
+    background-size: 100% 100%, auto 100%;
+    background-position: 0 0, right -70px center;
+  }
+
+  .hero .container {
+    padding-block: 28px;
+  }
+
+  .hero-content {
+    max-width: 62%;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .hero p {
+    margin: 12px 0 18px;
+    font-size: 14px;
+  }
+
+  /* Buttons stack and share the same width */
+  .hero-actions {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .hero-actions .btn {
+    width: 150px;
+    min-height: 40px;
+    padding: 0;
+    font-size: 14px;
+  }
+
+  /* ----- Section headings ----- */
+  .section-heading h2 {
+    font-size: 20px;
+  }
+
+  .section-heading p {
+    font-size: 13px;
+  }
+
+  /* ----- Services: one card per row, with an arrow on the right ----- */
+  .services {
+    padding: 24px 0 20px;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .service-card {
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .service-icon {
+    width: 46px;
+    height: 46px;
+  }
+
+  .service-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .service-text {
+    flex: 1;
+  }
+
+  .service-arrow {
+    display: block;
+    flex-shrink: 0;
+    color: var(--color-muted);
+  }
+
+  /* ----- Why Choose Us: text on the left, image on the right ----- */
+  .why-us {
+    padding: 22px 0;
+  }
+
+  .why-us-inner {
+    grid-template-columns: 1fr 38%;
+    grid-template-areas: "text image";
+    gap: 12px;
+    align-items: stretch; /* the image column grows to the height of the text column */
+  }
+
+  .why-us-text {
+    align-self: center;
+  }
+
+  .why-us-text h2 {
+    font-size: 19px;
+  }
+
+  /* One line per item: the font scales with the screen width
+     (2.6vw = 2.6% of the width), limited to between 8px and 12px. */
+  .check-list li {
+    align-items: center;
+    gap: 6px;
+    padding: 4px 0;
+    font-size: clamp(8px, 2.6vw, 12px);
+    white-space: nowrap;
+  }
+
+  .check-list svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* The image fills its column, so it is as tall as the text beside it */
+  .why-us-image {
+    position: relative;
+    min-height: 130px;
+  }
+
+  .why-us-image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  /* ----- Projects: still 3 columns, smaller cards ----- */
+  .projects-grid {
+    gap: 8px;
+  }
+
+  .project-card img {
+    aspect-ratio: 2 / 1;
+  }
+
+  .project-info {
+    padding: 7px 8px 8px;
+  }
+
+  .project-info h3 {
+    font-size: 12px;
+  }
+
+  .project-info p {
+    font-size: 10px;
+  }
+
+  /* ----- CTA: smaller icon and text ----- */
+  .cta {
+    padding: 14px 0;
+  }
+
+  .cta-inner {
+    gap: 12px;
+  }
+
+  .cta-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .cta-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .cta-text h2 {
+    font-size: 15px;
+  }
+
+  .cta-text p {
+    font-size: 11px;
+  }
+
+  .cta .btn-small {
+    flex-shrink: 0;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+
+  /* ----- Footer: one compact row ----- */
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .site-footer .logo {
+    font-size: 17px;
+  }
+
+  .copyright {
+    flex: 1;
+    text-align: center;
+    font-size: 10px;
+  }
+
+  .social-links {
+    gap: 10px;
+  }
+
+  .social-links svg {
+    width: 15px;
+    height: 15px;
+  }
+}
